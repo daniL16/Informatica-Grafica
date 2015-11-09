@@ -70,8 +70,8 @@ MallaRevol::MallaRevol(const char * nombre_arch, unsigned nperfiles ){
 
 		
 
-	// generamos los vertices
-	for (int k = 1 ; k < nperfiles ; k++){
+	// generamos los vertices y las caras
+	for (unsigned int k = 1 ; k < nperfiles ; k++){
 		alfa = (k*2*M_PI)/nperfiles;       
 		for(int i = 0 ; i < n ; i++)
 			vertices.push_back(Tupla3f(vertices[i](0)*cos(alfa)+vertices[i](2)*sin(alfa),
@@ -86,7 +86,7 @@ MallaRevol::MallaRevol(const char * nombre_arch, unsigned nperfiles ){
 	}
 	
  	
-	// enganchamos el ultimo con el primero
+	// unimos el ultimo con el primero
 	for (int i = 0 ; i < n-1 ; i++) {
 		caras.push_back(Tupla3i((nperfiles-1)*n+i,i+1,i));
 		caras.push_back(Tupla3i((nperfiles-1)*n+i,i+1,(nperfiles-1)*n+i+1));
@@ -96,11 +96,13 @@ MallaRevol::MallaRevol(const char * nombre_arch, unsigned nperfiles ){
 	vertices.push_back(Tupla3f(0,vertices_ply[1],0));
 	vertices.push_back(Tupla3f(0,vertices_ply[tam-2],0));
 	
-	for (int i = 1 ; i < nperfiles ; i++){
+	for (unsigned int i = 1 ; i < nperfiles ; i++){
 			caras.push_back(Tupla3i((i-1)*n,i*n,n*nperfiles));
 			caras.push_back(Tupla3i(i*n-1,(i+1)*n-1,n*nperfiles+1));			
 	}
 
 	caras.push_back(Tupla3i((nperfiles-1)*n,0,n*nperfiles));
 	caras.push_back(Tupla3i(nperfiles*n-1,n-1,n*nperfiles+1));
-}		
+}
+
+

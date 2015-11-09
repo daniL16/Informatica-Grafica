@@ -1,9 +1,11 @@
 #include "practica2.hpp"
 
+int num_objetos = 2 ;
 unsigned p2_objeto_activo = 0 ; // 0: objeto ply, 1: objeto revolucion
 static MallaInd * obj_ply = 0;
 static MallaInd * obj_rev = 0;
-int nperfiles = 10;
+int nperfiles = 50;
+
 
 
 void P2_Inicializar(int argc, char *argv[]){
@@ -28,7 +30,7 @@ bool P2_FGE_PulsarTeclaNormal( unsigned char tecla )
    if (tecla != 'o')
      return false ;
    else{
-      p2_objeto_activo = (p2_objeto_activo+1)% 2;
+      p2_objeto_activo = (p2_objeto_activo+1)% num_objetos;
       return true ;
    }
 }
