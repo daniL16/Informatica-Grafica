@@ -21,6 +21,7 @@
 // includes de archivos en el directorio de trabajo (de las prácticas)
 #include "practica1.hpp"
 #include "practica2.hpp"
+#include "practica3.hpp"
 // evita la necesidad de escribir std:: 
 using namespace std ;
 
@@ -60,7 +61,8 @@ int
 
 unsigned
    modo_vis  ,  // modo de visualización (0,1,3,4) 
-   practica_actual ;  // practica actual (cambiable por teclado) (1,2,3,4,5)  
+   practica_actual ;  // practica actual (cambiable por teclado) (1,2,3,4,5)
+unsigned num_practicas = 3 ; //numero de practicas
 
 // *********************************************************************
 // **
@@ -181,6 +183,9 @@ void DibujarObjetos()
       case 2 :
 	P2_DibujarObjetos( modo_vis );
 	break;
+      case 3 :
+	P3_DibujarObjetos( modo_vis );
+	break;
       // falta: case 2: ... case 3: ..... case 4: ..... case 5: .....
       //
       default :
@@ -253,10 +258,7 @@ void FGE_PulsarTeclaNormal( unsigned char tecla, int x_raton, int y_raton )
         modo_vis=(modo_vis+1)%4; // hay 4 modos de visualizacion posibles
         break;
       case 'P':
-	if (practica_actual == 1)
-		practica_actual = 2 ;
-	else
- 		practica_actual = 1 ;
+	practica_actual= ( practica_actual%num_practicas ) + 1;
 	break;
       default:
          redibujar = false ;
@@ -268,7 +270,9 @@ void FGE_PulsarTeclaNormal( unsigned char tecla, int x_raton, int y_raton )
  	    case 2 :
                redibujar = P2_FGE_PulsarTeclaNormal( tecla ) ; // true si es necesario redibujar 
                break ;
-            // falta: case 2, case 3, etc....
+            case 3 :
+               redibujar = P3_FGE_PulsarTeclaNormal( tecla ) ; // true si es necesario redibujar 
+               break ;
             default :
                redibujar = false ; // la tecla no es de la práctica activa (no es necesario redibujar)
          }
@@ -387,7 +391,7 @@ void Inicializa_Vars( )
    camara_angulo_y = 0.0 ;
 
    // inicializar práctica actual y modo de visualización inicial
-   practica_actual = 2 ;
+   practica_actual = 3 ;
    modo_vis = 0 ;
 }
 
@@ -455,6 +459,8 @@ void Inicializar( int argc, char *argv[] )
    P1_Inicializar( argc, argv ) ;
    // inicializar práctica 2.
    P2_Inicializar(argc, argv) ;
+   // inicializar práctica 3.
+   P3_Inicializar(argc, argv) ;
 }
 
 // *********************************************************************
