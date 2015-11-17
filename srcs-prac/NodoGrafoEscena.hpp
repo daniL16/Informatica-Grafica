@@ -1,5 +1,9 @@
-#include <Objeto3D.hpp>
-#include "matrizg.hpp" //matrices
+#include "Objeto3D.hpp"
+#include <vector>
+#include "matrizg.hpp"
+#include "aux.hpp"
+#include "practica1.hpp"
+ //matrices
 //Entrada del nodo del Grafo de Escena
 
 struct EntradaNGE {
@@ -14,6 +18,14 @@ struct EntradaNGE {
     EntradaNGE (const Matriz4f & pMatriz );// (crea copia)
 } ;
 
+class ContextoVis
+{
+public:
+//modo de visualización (alambre, sólido, etc....)
+unsigned modo_vis;
+// pila la modelview
+//PilaLIFOMatrices pila;
+} ;
 
 class NodoGrafoEscena:public Objeto3D {
  protected:
@@ -28,4 +40,32 @@ public:
     //construir una entrada y añadirla (al final)
     void agregar(Objeto3D * pObjeto );// objeto
     void agregar (const Matriz4f & pMatriz ); //matriz
+} ;
+
+class Rueda : public NodoGrafoEscena {
+	public:
+	Rueda();
+};
+
+class Cuerpo : public NodoGrafoEscena {
+public:
+       Cuerpo();
+};
+
+class Pluma : public NodoGrafoEscena  {
+public :
+	Pluma();
+};
+class Pala : public NodoGrafoEscena  {
+public : 
+Pala();
+};
+
+class Grua : public NodoGrafoEscena{
+protected:
+float h,alpha;
+public:
+Grua(float h_inicial,float alpha_inicial );
+void fijarH(float h_nuevo ) ;
+void fijarAlpha(float alpha_nuevo );
 } ;
