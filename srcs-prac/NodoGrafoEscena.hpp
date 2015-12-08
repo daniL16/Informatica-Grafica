@@ -2,9 +2,10 @@
 #include <vector>
 #include "matrizg.hpp"
 #include "aux.hpp"
-#include "practica1.hpp"
- //matrices
-//Entrada del nodo del Grafo de Escena
+#include "MallaInd.hpp"
+#include "matrices-tr.hpp"
+#ifndef NODO_GRAFO
+#define NODO_GRAFO
 
 struct EntradaNGE {
     unsigned char tipoE; // 0=objeto, 1=transformacion
@@ -18,14 +19,6 @@ struct EntradaNGE {
     EntradaNGE (const Matriz4f & pMatriz );// (crea copia)
 } ;
 
-class ContextoVis
-{
-public:
-//modo de visualización (alambre, sólido, etc....)
-unsigned modo_vis;
-// pila la modelview
-//PilaLIFOMatrices pila;
-} ;
 
 class NodoGrafoEscena:public Objeto3D {
  protected:
@@ -34,7 +27,7 @@ class NodoGrafoEscena:public Objeto3D {
 
 public:
     //visualiza usando OpenGL
-    virtual void visualizar(ContextoVis & cv ) ;
+    virtual void visualizar(unsigned cv ) ;
     // añadir una entrada (al final).
     void agregar(EntradaNGE * entrada); // genérica
     //construir una entrada y añadirla (al final)
@@ -42,30 +35,5 @@ public:
     void agregar (const Matriz4f & pMatriz ); //matriz
 } ;
 
-class Rueda : public NodoGrafoEscena {
-	public:
-	Rueda();
-};
 
-class Cuerpo : public NodoGrafoEscena {
-public:
-       Cuerpo();
-};
-
-class Pluma : public NodoGrafoEscena  {
-public :
-	Pluma();
-};
-class Pala : public NodoGrafoEscena  {
-public : 
-Pala();
-};
-
-class Grua : public NodoGrafoEscena{
-protected:
-float h,alpha;
-public:
-Grua(float h_inicial,float alpha_inicial );
-void fijarH(float h_nuevo ) ;
-void fijarAlpha(float alpha_nuevo );
-} ;
+#endif

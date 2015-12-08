@@ -50,4 +50,28 @@ class MallaRevol : public MallaInd
 
 #endif
 
+#ifndef OBJS
+#define OBJS
 
+class Cubo : public MallaInd{
+	public:
+		Cubo();
+};
+
+class Tetraedro : public MallaInd {
+	public:
+		Tetraedro();
+};
+
+class Cilindro: public MallaInd {
+	public:
+	   Cilindro(int n); //n : numero de caras
+};
+
+class Cono: public MallaInd {
+	public:
+	  Cono(int n,int h);
+};
+
+
+#endif

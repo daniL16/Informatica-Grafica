@@ -71,7 +71,7 @@ MallaRevol::MallaRevol(const char * nombre_arch, unsigned nperfiles ){
 		
 
 	// generamos los vertices y las caras
-	for (unsigned int k = 1 ; k < nperfiles ; k++){
+	for (unsigned  k = 1 ; k < nperfiles ; k++){
 		alfa = (k*2*M_PI)/nperfiles;       
 		for(int i = 0 ; i < n ; i++)
 			vertices.push_back(Tupla3f(vertices[i](0)*cos(alfa)+vertices[i](2)*sin(alfa),
@@ -79,7 +79,7 @@ MallaRevol::MallaRevol(const char * nombre_arch, unsigned nperfiles ){
 					   	   vertices[i](2)*cos(alfa)-vertices[i](0)*sin(alfa)));
 		
 	
-		for (int i = (k-1)*n ; i < k*n-1 ; i++){
+		for (unsigned i = (k-1)*n ; i < k*n-1 ; i++){
 			caras.push_back(Tupla3i(i+1,i+n+1,i));	
 			caras.push_back(Tupla3i(i,i+n+1,i+n));	
 		}
@@ -104,5 +104,97 @@ MallaRevol::MallaRevol(const char * nombre_arch, unsigned nperfiles ){
 	caras.push_back(Tupla3i((nperfiles-1)*n,0,n*nperfiles));
 	caras.push_back(Tupla3i(nperfiles*n-1,n-1,n*nperfiles+1));
 }
+
+Cubo::Cubo() {
+		nombre_obj = "cubo";
+
+        vertices.push_back(Tupla3f(-1,-1,1));
+        vertices.push_back(Tupla3f(1,-1,1 ));
+		vertices.push_back(Tupla3f(1,1,1));
+		vertices.push_back(Tupla3f(-1,1,1));
+		
+		vertices.push_back(Tupla3f(1,-1,-1));
+		vertices.push_back(Tupla3f(1,1,-1));
+        vertices.push_back(Tupla3f(-1,1,-1));
+    	vertices.push_back(Tupla3f(-1,-1,-1));
+
+	    caras.push_back(Tupla3i(0,1,2));
+        caras.push_back(Tupla3i(0,2,3)); 
+
+   		caras.push_back(Tupla3i(1,4,5));
+   		caras.push_back(Tupla3i(1,5,2));
+    		
+        caras.push_back(Tupla3i(3,2,5));
+   		caras.push_back(Tupla3i(3,5,6));
+    		
+        caras.push_back(Tupla3i(0,1,4));
+   		caras.push_back(Tupla3i(0,4,7));
+
+   		caras.push_back(Tupla3i(7,4,5));
+   		caras.push_back(Tupla3i(7,5,6));
+
+        caras.push_back(Tupla3i(0,7,6));
+   		caras.push_back(Tupla3i(0,6,3));
+}
+
+Tetraedro::Tetraedro(){
+		nombre_obj = "tetraedro";
+
+		vertices.push_back(Tupla3f(1,-1,-1));
+		vertices.push_back(Tupla3f(-1,1,-1));
+		vertices.push_back(Tupla3f (-1,-1,1));
+		vertices.push_back(Tupla3f (-1,-1,-1));
+				
+		caras.push_back(Tupla3i(0,1,3));
+		caras.push_back(Tupla3i(0, 1, 2));
+		caras.push_back(Tupla3i(1, 3, 2));
+		caras.push_back(Tupla3i(3, 0, 2));
+}
+
+Cilindro::Cilindro(int n){
+       // CILINDRO APOYADO EN EL EJE Z=0 CON CENTRO EN EL ORIGEN    
+      
+      //tapas
+      vertices.push_back(Tupla3f(0,-1,0));
+      for(int j=0; j<n ; j++){
+         vertices.push_back(Tupla3f(cos((2*j*M_PI)/n),-1,sin((2*j*M_PI)/n)));
+      }
+      for(int k=1 ; k<n; k++)
+	caras.push_back(Tupla3i(0,k,k+1));
+      caras.push_back(Tupla3i(0,n,1));
+
+      vertices.push_back(Tupla3f(0,1,0));
+      for(int j=0; j<n ; j++){
+         vertices.push_back(Tupla3f(cos((2*j*M_PI)/n),1,sin((2*j*M_PI)/n)));
+      }
+      for(int k=1 ; k<n; k++)
+	caras.push_back(Tupla3i(n+1,n+k+1,n+k+2));
+      caras.push_back(Tupla3i(n+1,2*n+1,n+2));
+  // lateral
+      for(int i=1;i<n;i++){
+	caras.push_back(Tupla3i(i,n+i+1,n+i+2));
+	caras.push_back(Tupla3i(i,i+1,n+i+2));
+      }
+	caras.push_back(Tupla3i(n,n+2,2*n+1));
+	caras.push_back(Tupla3i(n,1,2*n+1));
+}
+
+Cono::Cono(int n,int h){
+	//base
+	vertices.push_back(Tupla3f(0,0,0));
+	for(int j=0; j<n ; j++){
+         vertices.push_back(Tupla3f(cos((2*j*M_PI)/n),sin((2*j*M_PI)/n),0));
+      	}
+	for(int k=1 ; k<n; k++)
+		caras.push_back(Tupla3i(0,k,k+1));
+      	caras.push_back(Tupla3i(0,n,1));
+	
+	// punta
+	vertices.push_back(Tupla3f(0,0,h));
+	for (int i=1 ; i < n ; i++)
+		caras.push_back(Tupla3i(i,i+1,n+1));
+	caras.push_back(Tupla3i(n,1,n+1));
+}
+
 
 

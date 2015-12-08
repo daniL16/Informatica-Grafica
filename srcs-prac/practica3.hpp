@@ -1,4 +1,6 @@
 #include "MallaInd.hpp"
+#include "Runner.hpp"
+
 #ifndef IG_PRACTICA3_HPP
 #define IG_PRACTICA3_HPP
 
