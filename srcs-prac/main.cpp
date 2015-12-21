@@ -184,8 +184,8 @@ void DibujarObjetos()
 	P2_DibujarObjetos( modo_vis );
 	break;
       case 3 :
-	P3_DibujarObjetos( modo_vis );
-	break;
+	   P3_DibujarObjetos( modo_vis );
+	   break;
       // falta: case 2: ... case 3: ..... case 4: ..... case 5: .....
       //
       default :

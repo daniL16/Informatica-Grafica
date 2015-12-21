@@ -1,5 +1,5 @@
 #include "MallaInd.hpp"
-#include "Runner.hpp"
+#include "Dibujo.hpp"
 
 #ifndef IG_PRACTICA3_HPP
 #define IG_PRACTICA3_HPP

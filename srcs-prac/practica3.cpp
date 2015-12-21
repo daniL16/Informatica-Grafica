@@ -1,19 +1,20 @@
 #include "practica3.hpp"
 
 int grados_libertad = 3 ;
-//float alpha,beta,gamma = 0 ;
-int p3_grado_libertad_activo ;
+int p3_grado_libertad_activo = 0;
 int p3_objeto_activo = 0;
-int p3_num_objetos ;
+int p3_num_objetos = 1 ;
 
-static Objeto3D * obj_jerarquico ;
+static NodoGrafoEscena ** obj_jerarquico ;
+Dibujo * escena;
 
 void P3_Inicializar( int argc, char *argv[] ){
-    obj_jerarquico = new Runner();
+    escena = new Dibujo();
+    obj_jerarquico = new NodoGrafoEscena * [1]{escena};
 }
 
 void P3_DibujarObjetos( unsigned modo ){
-    obj_jerarquico->visualizar(modo);
+    obj_jerarquico[p3_objeto_activo]->visualizar(modo);
 }
 
 bool P3_FGE_PulsarTeclaNormal(  unsigned char tecla ) {
@@ -21,14 +22,29 @@ bool P3_FGE_PulsarTeclaNormal(  unsigned char tecla ) {
 		case '>' :
             switch(p3_grado_libertad_activo) {
                 case 0 :
+                    escena->AumentarAlpha();
                     break;
                 case 1 :
+                    escena->AumentarBeta();
                     break;
                 case 2 :
+                    escena->AumentarGamma();
                     break;
             }
-		case '<' :
-			
+            break;
+        case '<' :
+            switch(p3_grado_libertad_activo) {
+                case 0 :
+                    escena->DisminuirAlpha();
+                    break;
+                case 1 :
+                    escena->DisminuirBeta();
+                    break;
+                case 2 :
+                    escena->DisminuirGamma();
+                    break;
+            }
+	        break;
 		case 'G' :
             p3_grado_libertad_activo = (p3_grado_libertad_activo+1) % grados_libertad; 
 			break;
