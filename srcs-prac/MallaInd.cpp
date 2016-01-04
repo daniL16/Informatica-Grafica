@@ -1,5 +1,31 @@
 #include "MallaInd.hpp"
 
+void MallaInd::calcularNormales(){
+    int k = caras.size();
+    Tupla3f p,q,r,a,b,m,n;
+    Tupla3i cara_actual;
+    
+    for (int i = 0 ; i < k ; i++){
+        cara_actual = caras[i];
+        p = vertices[cara_actual(0)];
+        q =  vertices[cara_actual(1)];
+        r =  vertices[cara_actual(2)];
+        a = q - p;
+        b = r - p;
+        m = a.cross(b);
+        n = m.normalized();
+        normales_c.push_back(n);
+        
+
+        normales_v[cara_actual(0)] = normales_v[cara_actual(0)] + n;
+        normales_v[cara_actual(1)] = normales_v[cara_actual(1)] + n;
+        normales_v[cara_actual(2)] = normales_v[cara_actual(2)] + n;
+    }
+    for (int i = 0 ; i < normales_v.size() ; i++){
+        normales_v[i] = normales_v[i].normalized();
+    }
+}
+
 MallaInd::MallaInd(){
 	nombre_obj=" ";
 }
@@ -54,7 +80,7 @@ MallaPLY::MallaPLY( const char * nombre_arch ){
 		caras.push_back(Tupla3i(caras_ply[i],caras_ply[i+1],caras_ply[i+2]));
 }
 
-MallaRevol::MallaRevol(const char * nombre_arch, unsigned nperfiles ){
+MallaRevol::MallaRevol(const char * nombre_arch, unsigned nperfiles,bool texturas){
 	
 	std::vector<float> vertices_ply;
 	

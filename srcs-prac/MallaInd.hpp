@@ -13,9 +13,13 @@ class MallaInd : public Objeto3D
    protected:
    	std::vector<Tupla3f> vertices;
    	std::vector<Tupla3i> caras;
+    std::vector<Tupla3f> normales_c;
+    std::vector<Tupla3f> normales_v;
+    std::vector<Tupla2f> coord_tex;
    public:
       virtual void visualizar( unsigned mode );
       MallaInd();
+      void calcularNormales();
 } ;
 
 #endif
@@ -45,7 +49,7 @@ class MallaRevol : public MallaInd
       // se debe especificar: el nombre completo del archivo a leer
       //                      el número de copias del perfil
       
-      MallaRevol( const char * nombre_arch, unsigned nperfiles ) ; 
+      MallaRevol( const char * nombre_arch, unsigned nperfiles,bool textura) ; 
 } ;
 
 #endif

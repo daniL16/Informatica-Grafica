@@ -4,19 +4,23 @@
 #include "aux.hpp"
 #include "MallaInd.hpp"
 #include "matrices-tr.hpp"
+#include "Material.hpp"
+
 #ifndef NODO_GRAFO
 #define NODO_GRAFO
 
 struct EntradaNGE {
-    unsigned char tipoE; // 0=objeto, 1=transformacion
+    unsigned char tipoE; // 0=objeto, 1=transformacion 2=material
     union{
         Objeto3D * objeto; // ptr. a un objeto (propietario)
         Matriz4f * matriz; // ptr. a matriz 4x4 transf. (prop.)
+        Material * material;
     };
 
     //constructores (uno por tipo)
     EntradaNGE(Objeto3D * pObjeto ) ; //(copia solo puntero)
     EntradaNGE (const Matriz4f & pMatriz );// (crea copia)
+    EntradaNGE(Material * material ) ;
 } ;
 
 
@@ -33,6 +37,7 @@ public:
     //construir una entrada y añadirla (al final)
     void agregar(Objeto3D * pObjeto );// objeto
     void agregar (const Matriz4f & pMatriz ); //matriz
+    void agregar( Material * material ) ;
 } ;
 
 
