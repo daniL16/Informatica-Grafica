@@ -1,4 +1,9 @@
 #include "jpg_imagen.hpp"
+#include "aux.hpp"
+#include "tuplasg.hpp"
+
+#ifndef MATERIAL
+#define MATERIAL
 
 class Material      
 {  
@@ -44,7 +49,7 @@ class FuenteLuz
  public:   
    Tupla4f  posvec ;       // posición (si w=1) o vector (w=0)
    Tupla4f  colores[3] ;   // colores: 0=ambiental, 1=difuso, 2=especular.
-   float    lon,lat;      // ángulos de rotación (fuente direccional modificable interactivamente)
+   float    longi,lati;      // ángulos de rotación (fuente direccional modificable interactivamente)
   
    void activar( int i ) ; // activa la fuente de luz (con número GL_LIGHT0+i) 
 } ;
@@ -65,21 +70,25 @@ class MaterialLata : public MaterialEstandar
   public:
     MaterialLata() ;
 };
+
 class MaterialTapasLata : public MaterialEstandar
 {
   public:
     MaterialTapasLata() ;
 };
+
 class MaterialPeonMadera : public MaterialEstandar
 {
   public:
     MaterialPeonMadera() ;
 };
+
 class MaterialPeonBlanco : public MaterialEstandar
 {
   public:
     MaterialPeonBlanco() ;
 };
+
 class MaterialPeonNegro : public MaterialEstandar
 {
   public:
@@ -92,13 +101,17 @@ class FuenteDireccional : public FuenteLuz
     FuenteDireccional( float alpha_inicial, float beta_inicial ) ;
     void variarAngulo( unsigned angulo, float incremento ) ;  // angulo=0 --> variar alpha, angulo=1 --> variar beta
 };
+
 class FuentePosicional : public FuenteLuz
 {
   public:
     FuentePosicional( const Tupla3f & posicion ) ;
 };
+
 class ColeccionFuentesP4 : public ColeccionFL
 {
   public:
     ColeccionFuentesP4() ;
 };
+
+#endif

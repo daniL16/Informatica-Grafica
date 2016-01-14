@@ -12,15 +12,15 @@ void P2_Inicializar(int argc, char *argv[]){
 	switch (argc){	
 		case 2:
 			obj_ply = new MallaPLY(argv[1]);
-			obj_rev = new MallaRevol ("../plys/peon.ply",nperfiles,false);
+			obj_rev = new MallaRevol ("../plys/peon.ply",nperfiles);
 			break;
 		case 3:
 			obj_ply = new MallaPLY(argv[1]);
-			obj_rev = new MallaRevol (argv[2],nperfiles,false);
+			obj_rev = new MallaRevol (argv[2],nperfiles);
 			break;
 		default :
 			obj_ply = new MallaPLY("../plys/beethoven.ply");
-			obj_rev = new MallaRevol ("../plys/peon.ply",nperfiles,false);
+			obj_rev = new MallaRevol ("../plys/peon.ply",nperfiles);
 			break;
 	}
 }

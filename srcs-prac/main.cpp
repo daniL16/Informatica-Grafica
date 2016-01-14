@@ -63,7 +63,7 @@ int
 unsigned
    modo_vis  ,  // modo de visualización (0,1,3,4) 
    practica_actual ;  // practica actual (cambiable por teclado) (1,2,3,4,5)
-unsigned num_practicas = 4; //numero de practicas
+unsigned num_practicas = 4 ; //numero de practicas
 
 // *********************************************************************
 // **
@@ -187,9 +187,11 @@ void DibujarObjetos()
       case 3 :
 	     P3_DibujarObjetos( modo_vis );
 	     break;
-      case 4 :
-         P4_DibujarObjetos( modo_vis );
+       case 4 :
+	     P4_DibujarObjetos( modo_vis );
 	     break;
+      // falta: case 2: ... case 3: ..... case 4: ..... case 5: .....
+      //
       default :
          cout << "El valor de 'practica_actual' (" << practica_actual  << ") es incorrecto" << endl ;
          break ;
@@ -257,11 +259,11 @@ void FGE_PulsarTeclaNormal( unsigned char tecla, int x_raton, int y_raton )
          frustum_factor_escala /= 1.05;
          break;
       case 'M' :
-        modo_vis=(modo_vis+1)%6; // hay 4 modos de visualizacion posibles
+        modo_vis=(modo_vis+1)%6; // hay 6 modos de visualizacion posibles
         break;
       case 'P':
-	   practica_actual= ( practica_actual%num_practicas ) + 1;
-	   break;
+	practica_actual= ( practica_actual%num_practicas ) + 1;
+	break;
       default:
          redibujar = false ;
          switch( practica_actual ) 
@@ -269,13 +271,13 @@ void FGE_PulsarTeclaNormal( unsigned char tecla, int x_raton, int y_raton )
             case 1 :
                redibujar = P1_FGE_PulsarTeclaNormal( tecla ) ; // true si es necesario redibujar 
                break ;
- 	        case 2 :
+ 	    case 2 :
                redibujar = P2_FGE_PulsarTeclaNormal( tecla ) ; // true si es necesario redibujar 
                break ;
             case 3 :
                redibujar = P3_FGE_PulsarTeclaNormal( tecla ) ; // true si es necesario redibujar 
                break ;
-            case 4 :
+         case 4 :
                redibujar = P4_FGE_PulsarTeclaNormal( tecla ) ; // true si es necesario redibujar 
                break ;
             default :
@@ -396,7 +398,7 @@ void Inicializa_Vars( )
    camara_angulo_y = 0.0 ;
 
    // inicializar práctica actual y modo de visualización inicial
-   practica_actual = 3 ;
+   practica_actual = 4 ;
    modo_vis = 0 ;
 }
 
@@ -466,8 +468,7 @@ void Inicializar( int argc, char *argv[] )
    P2_Inicializar(argc, argv) ;
    // inicializar práctica 3.
    P3_Inicializar(argc, argv) ;
-    // inicializar práctica 4.
-   //P4_Inicializar(argc, argv) ;
+   P4_Inicializar(argc, argv) ;
 }
 
 // *********************************************************************

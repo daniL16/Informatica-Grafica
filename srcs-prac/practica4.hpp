@@ -1,6 +1,6 @@
 #include "MallaInd.hpp"
-#include "Dibujo.hpp"
-
+#include "escena.hpp"
+#include "Material.hpp"
 #ifndef IG_PRACTICA4_HPP
 #define IG_PRACTICA4_HPP
 

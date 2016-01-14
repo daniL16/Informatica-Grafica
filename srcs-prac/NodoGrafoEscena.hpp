@@ -1,3 +1,6 @@
+#ifndef NODO_GRAFO
+#define NODO_GRAFO
+
 #include "Objeto3D.hpp"
 #include <vector>
 #include "matrizg.hpp"
@@ -6,8 +9,7 @@
 #include "matrices-tr.hpp"
 #include "Material.hpp"
 
-#ifndef NODO_GRAFO
-#define NODO_GRAFO
+
 
 struct EntradaNGE {
     unsigned char tipoE; // 0=objeto, 1=transformacion 2=material
@@ -23,6 +25,11 @@ struct EntradaNGE {
     EntradaNGE(Material * material ) ;
 } ;
 
+class ContextoVis{
+public:
+    unsigned modo_vis;
+    Material * materialActivo;
+} ;
 
 class NodoGrafoEscena:public Objeto3D {
  protected:
@@ -32,6 +39,7 @@ class NodoGrafoEscena:public Objeto3D {
 public:
     //visualiza usando OpenGL
     virtual void visualizar(unsigned cv ) ;
+    void visualizar(ContextoVis cv ) ;
     // añadir una entrada (al final).
     void agregar(EntradaNGE * entrada); // genérica
     //construir una entrada y añadirla (al final)

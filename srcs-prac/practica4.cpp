@@ -1,25 +1,21 @@
 #include "practica4.hpp"
 
 int angulo_actual = 0;
-int alpha,beta; //???
-/*
-int grados_libertad = 3 ;
-int p3_grado_libertad_activo = 0;
-int p3_objeto_activo = 0;
-int p3_num_objetos = 1 ;
+int alpha,beta;
+//Textura coca_cola;
+//Textura madera;
 
-static NodoGrafoEscena ** obj_jerarquico ;
-Dibujo * escena;
-*/
-//parametros materialers
+static NodoGrafoEscena ** p4_obj_jerarquico ;
+Escena * p4_escena;
+
 void P4_Inicializar( int argc, char *argv[] ){
     //cargar texturas y crear materiales
-    //escena = new Dibujo();
-    //obj_jerarquico = new NodoGrafoEscena * [1]{escena};
+    p4_escena = new Escena();
+    p4_obj_jerarquico = new NodoGrafoEscena * [1]{p4_escena};
 }
 
 void P4_DibujarObjetos( unsigned modo ){
-    //obj_jerarquico[p3_objeto_activo]->visualizar(modo);
+    p4_obj_jerarquico[0]->visualizar(modo);
 }
 
 bool P4_FGE_PulsarTeclaNormal(  unsigned char tecla ) {
