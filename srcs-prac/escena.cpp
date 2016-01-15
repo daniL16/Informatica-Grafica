@@ -1,13 +1,16 @@
 #include "escena.hpp"
 
 Escena::Escena(){
-   agregar(new Lata());
+    //agregar(new MaterialLata());
+    //agregar(new Lata());
     agregar(MAT_Traslacion(0.0,0.0,1.0));
-    agregar(new Peon());
-    agregar(MAT_Traslacion(3.0,0.0,0.0));
-    agregar(new Peon());
     agregar(new MaterialPeonMadera());
+    agregar(new Peon());
     agregar(MAT_Traslacion(3.0,0.0,0.0));
+    agregar(new MaterialPeonNegro());
+    agregar(new Peon());
+    agregar(MAT_Traslacion(3.0,0.0,0.0));
+    agregar(new MaterialPeonBlanco());
     agregar(new Peon());
      
 }

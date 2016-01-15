@@ -13,9 +13,16 @@ class MallaInd : public Objeto3D
    protected:
    	std::vector<Tupla3f> vertices;
    	std::vector<Tupla3i> caras;
+    std::vector<Tupla3f> normales_c;
+    std::vector<Tupla3f> normales_v;
+    std::vector<Tupla2f>	coordenadas_textura;
+    
+    void calcularNormalesVertices();
+    void calcularNormalesCaras();
    public:
       virtual void visualizar( unsigned mode );
       MallaInd();
+      void calcularNormales();
 } ;
 
 #endif

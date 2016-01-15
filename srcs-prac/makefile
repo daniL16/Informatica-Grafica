@@ -18,7 +18,7 @@ target_name	:= prac
 units_loc   := main   Objeto3D NodoGrafoEscena Dibujo escena MallaInd Material practica1 practica2 practica3 practica4 
 ### nota: añadir a 'units_loc' los módulos practica2 practica3, etc.....
 
-units       := jpg_memsrc jpg_readwrite\
+units       := jpg_imagen jpg_memsrc jpg_readwrite\
                shaders matrices-tr\
                file_ply_stl\
                aux

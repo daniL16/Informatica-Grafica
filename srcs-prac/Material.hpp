@@ -49,9 +49,14 @@ class FuenteLuz
  public:   
    Tupla4f  posvec ;       // posición (si w=1) o vector (w=0)
    Tupla4f  colores[3] ;   // colores: 0=ambiental, 1=difuso, 2=especular.
-   float    longi,lati;      // ángulos de rotación (fuente direccional modificable interactivamente)
-  
-   void activar( int i ) ; // activa la fuente de luz (con número GL_LIGHT0+i) 
+   float    longi,lati;    // ángulos de rotación (fuente direccional modificable interactivamente)
+   int w;
+    
+   FuenteLuz(Tupla4f vec, Tupla4f ambiental, Tupla4f difuso, Tupla4f especular,int w);
+   FuenteLuz( Tupla4f vec,int w);
+   void modificar_direccion( float alpha, float beta );
+   void activar( int i ) ; // activa la fuente de luz (con número GL_LIGHT0+i)
+
 } ;
 
 // ---------------------------------------------------------------------

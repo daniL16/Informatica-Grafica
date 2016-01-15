@@ -42,6 +42,48 @@ void MallaInd::visualizar( unsigned mode ){
 		     }
  }
 
+void MallaInd::calcularNormalesCaras(){
+	Tupla3f A, B, C, AB, BC, normal;
+
+	normales_c.resize( caras.size() );
+
+	for (int i = 0; i < caras.size(); i++){
+		A = vertices[ caras[i][0] ];
+		B = vertices[ caras[i][1] ];
+		C = vertices[ caras[i][2] ];
+
+		AB = B - A;
+		BC = C - B;
+
+		normal = AB.cross(BC); 
+
+		normales_c[i] = normal.normalized();
+	}
+}
+
+void MallaInd::calcularNormalesVertices(){
+	for (int k = 0 ; k < vertices.size(); k++){
+        normales_v.push_back(Tupla3f(0.0, 0.0, 0.0));
+    }
+
+	for (unsigned int i = 0; i < normales_c.size(); i++){
+
+		for (int j = 0; j < 3; ++j){
+			int indice = caras[i][j];
+            normales_v[indice] = normales_v[indice]+normales_c[i];
+		}
+	}
+
+	for (unsigned int i = 0; i < normales_v.size(); i++)
+		normales_v[i] = normales_v[i].normalized();
+	
+}
+
+void MallaInd::calcularNormales(){
+    calcularNormalesCaras();
+    calcularNormalesVertices();
+}
+
 MallaPLY::MallaPLY( const char * nombre_arch ){
 	std::vector<float> vertices_ply;
 	std::vector<int> caras_ply;
@@ -103,6 +145,9 @@ MallaRevol::MallaRevol(const char * nombre_arch, unsigned nperfiles ){
 
 	caras.push_back(Tupla3i((nperfiles-1)*n,0,n*nperfiles));
 	caras.push_back(Tupla3i(nperfiles*n-1,n-1,n*nperfiles+1));
+    
+    //calcular normales
+    //calcularNormales();
 }
 
 Cubo::Cubo() {

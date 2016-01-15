@@ -22,4 +22,5 @@ class Lata: public NodoGrafoEscena {
     public: 
     Lata(); 
 };
+
 #endif
