@@ -1,6 +1,8 @@
 #include "MallaInd.hpp"
 #include "escena.hpp"
+#include "luz.hpp"
 #include "Material.hpp"
+
 #ifndef IG_PRACTICA4_HPP
 #define IG_PRACTICA4_HPP
 

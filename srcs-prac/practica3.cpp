@@ -14,9 +14,10 @@ void P3_Inicializar( int argc, char *argv[] ){
 }
 
 void P3_DibujarObjetos( unsigned modo ){
-    ContextoVis cv;
-    cv.modo_vis= modo;
-    obj_jerarquico[p3_objeto_activo]->visualizar(cv);
+    if(modo < 4)
+        obj_jerarquico[p3_objeto_activo]->visualizar(modo);
+    else
+        obj_jerarquico[p3_objeto_activo]->visualizar(2);
 }
 
 bool P3_FGE_PulsarTeclaNormal(  unsigned char tecla ) {

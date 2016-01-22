@@ -56,19 +56,23 @@ bool P1_FGE_PulsarTeclaNormal( unsigned char tecla )
 // modo: 0 - puntos, 1 - alambre, 2 - sólido, 3 - sólido ajedrez , >=4 otros....
 
 void P1_DibujarObjetos( unsigned modo ) {
-  switch(objeto_activo){
-    case 0 :
-       tetra->visualizar(modo);
-       break;
-    case 1 :
-       cubo->visualizar(modo);    
-       break;
-   case 2 :
-	cilindro->visualizar(modo);
-	break;
-   case 3 :
-	cono->visualizar(modo);
-	break;
-   
-  }
+  
+     if (modo > 3)
+        modo = 2;
+    
+    switch(objeto_activo){
+        case 0 :
+            tetra->visualizar(modo);
+            break;
+        case 1 :
+            cubo->visualizar(modo);    
+            break;
+        case 2 :
+	       cilindro->visualizar(modo);
+	       break;
+        case 3 :
+	       cono->visualizar(modo);
+	       break;
+    }
+    
 }

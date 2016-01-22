@@ -15,7 +15,7 @@ class MallaInd : public Objeto3D
    	std::vector<Tupla3i> caras;
     std::vector<Tupla3f> normales_c;
     std::vector<Tupla3f> normales_v;
-    std::vector<Tupla2f>	coordenadas_textura;
+    std::vector<Tupla2f> coordenadas_textura;
     
     void calcularNormalesVertices();
     void calcularNormalesCaras();
@@ -52,7 +52,7 @@ class MallaRevol : public MallaInd
       // se debe especificar: el nombre completo del archivo a leer
       //                      el número de copias del perfil
       
-      MallaRevol( const char * nombre_arch, unsigned nperfiles ) ; 
+      MallaRevol( const char * nombre_arch, unsigned nperfiles, bool gen_coord ) ;
 } ;
 
 #endif

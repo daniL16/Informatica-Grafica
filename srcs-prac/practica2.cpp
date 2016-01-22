@@ -12,15 +12,15 @@ void P2_Inicializar(int argc, char *argv[]){
 	switch (argc){	
 		case 2:
 			obj_ply = new MallaPLY(argv[1]);
-			obj_rev = new MallaRevol ("../plys/peon.ply",nperfiles);
+			obj_rev = new MallaRevol ("../plys/peon.ply",nperfiles,false);
 			break;
 		case 3:
 			obj_ply = new MallaPLY(argv[1]);
-			obj_rev = new MallaRevol (argv[2],nperfiles);
+			obj_rev = new MallaRevol (argv[2],nperfiles,false);
 			break;
 		default :
 			obj_ply = new MallaPLY("../plys/beethoven.ply");
-			obj_rev = new MallaRevol ("../plys/peon.ply",nperfiles);
+			obj_rev = new MallaRevol ("../plys/peon.ply",nperfiles,false);
 			break;
 	}
 }
@@ -37,7 +37,11 @@ bool P2_FGE_PulsarTeclaNormal( unsigned char tecla )
 
 
 void P2_DibujarObjetos( unsigned modo ) {
-  switch(p2_objeto_activo){
+  
+    if (modo > 3)
+        modo = 2;
+    
+    switch(p2_objeto_activo){
     case 0:
 	obj_ply->visualizar(modo);
 	break;
